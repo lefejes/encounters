@@ -15,12 +15,16 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     .when('/', { templateUrl: '/partials/main/main', controller: 'mainCtrl' })
     .when('/admin/users', {
       templateUrl: '/partials/admin/user-list', controller: 'eUserListCtrl',
-      resolve: routeRoleChecks.admin
-    })
+      resolve: routeRoleChecks.admin})
     .when('/signup', { templateUrl: '/partials/account/signup',
       controller: 'eSignupCtrl' })
     .when('/profile', { templateUrl: '/partials/account/profile',
-      controller: 'eProfileCtrl', resolve: routeRoleChecks.user });
+      controller: 'eProfileCtrl', resolve: routeRoleChecks.user })
+
+    .when('/character', { templateUrl: '/partials/characters/character-list',
+      controller: 'eCharacterListCtrl',  resolve: routeRoleChecks.user})
+    .when('/character/:id', { templateUrl: '/partials/characters/character-details',
+      controller: 'eCharacterDetailCtrl', resolve: routeRoleChecks.user});
 });
 
 angular.module('app').run(function($rootScope, $location) {

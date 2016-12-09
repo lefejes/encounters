@@ -1,5 +1,6 @@
 var auth = require('./auth'),
     users = require('../controllers/users'),
+    characters = require('../controllers/characters'),
     mongoose = require('mongoose'),
     User = mongoose.model('User');
 
@@ -9,6 +10,8 @@ module.exports = function(app) {
   app.post('/api/users', users.createUser);
   app.put('/api/users', users.updateUser);
 
+  app.get('/api/character', characters.getCharacters);
+  app.get('/api/character/:id', characters.getCharactersById);
   app.get('/partials/*', function(req, res) {
     res.render("../../public/app/" + req.params[0]);
   });
