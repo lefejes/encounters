@@ -12,6 +12,8 @@ module.exports = function(app) {
 
   app.get('/api/character', characters.getCharacters);
   app.get('/api/character/:id', characters.getCharactersById);
+  app.post('/api/character', characters.createCharacter);
+
   app.get('/partials/*', function(req, res) {
     res.render("../../public/app/" + req.params[0]);
   });

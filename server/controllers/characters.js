@@ -11,3 +11,15 @@ exports.getCharactersById = function(req, res) {
     res.send(character);
   });
 };
+
+exports.createCharacter = function(req, res, next) {
+  var characterData = req.body;
+  Character.create(characterData, function(err, character) {
+    if (err) {
+      res.status(400);
+      return res.send({reason: err.toString()});
+    }
+
+    res.send(character);
+  });
+};

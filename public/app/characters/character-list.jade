@@ -1,5 +1,5 @@
 .container.top-padding-med
-  button.btn.btn-primary(ng-click="addNew") Add Character
+  button.btn.btn-primary(data-target="#addNew" data-toggle="modal") Add Character
   .pull-right
     form.form-inline
       .form-group
@@ -21,3 +21,71 @@
           td {{character.initiativeBonus}}
           td {{character.charType}}
           td {{character.group}}
+
+div.modal.fade(id="addNew", ng-controller="eAddCharacterCtrl")
+  div.modal-dialog
+    div.modal-content
+      div.modal-header
+        h4.modal-title New Character
+      div.modal-body  
+        form.form-horizontal(name="addCharacterForm")
+          fieldset
+            .form-group
+              label.col-md-2.control-label(for="name") Character Name
+              .col-md-10
+                input.form-control(name="name", type="text", 
+                  placeholder="Name", ng-model="name", required)
+            .form-group
+              label.col-md-2.control-label(for="charType") Type
+              .col-md-10
+                select.form-control(name="charType", ng-model="charType",
+                  ng-options="item.value as item.text for item in charTypes", required)
+            .form-group
+              label.col-md-2.control-label(for="group") Group
+              .col-md-10
+                input.form-control(name="group", type="text", 
+                  placeholder="Group", ng-model="group", required)
+            .form-group
+              label.col-md-2.control-label(for="initiativeBonus") Initiative Bonus
+              .col-md-10
+                input.form-control(name="initiativeBonus", type="number", 
+                  ng-model="initiativeBonus", required)
+        div.modal-footer
+          button.btn.btn-primary(ng-click="addNew()", 
+            ng-disabled="addCharacterForm.$invalid") Submit
+          button.btn.btn-default(data-dismiss="modal") Cancel
+          
+          
+div#updateCharacter.modal.fade(ng-controller="eUpdateCharacterCtrl")
+  div.modal-dialog
+    div.modal-content
+      div.modal-header
+        h4.modal-title Update Character
+      div.modal-body  
+        form.form-horizontal(name="updateCharacterForm")
+          fieldset
+            .form-group
+              label.col-md-2.control-label(for="name") Character Name
+              .col-md-10
+                input.form-control(name="name", type="text", 
+                  placeholder="Name", ng-model="name", required)
+            .form-group
+              label.col-md-2.control-label(for="charType") Type
+              .col-md-10
+                select.form-control(name="charType", ng-model="charType",
+                  ng-options="item.value as item.text for item in charTypes", required)
+            .form-group
+              label.col-md-2.control-label(for="group") Group
+              .col-md-10
+                input.form-control(name="group", type="text", 
+                  placeholder="Group", ng-model="group", required)
+            .form-group
+              label.col-md-2.control-label(for="initiativeBonus") Initiative Bonus
+              .col-md-10
+                input.form-control(name="initiativeBonus", type="number", 
+                  ng-model="initiativeBonus", required)
+        div.modal-footer
+          button.btn.btn-danger(ng-click="delete()") Delete
+          button.btn.btn-primary(ng-click="update()", 
+            ng-disabled="updateCharacterForm.$invalid") Submit
+          button.btn.btn-default(data-dismiss="modal") Cancel
