@@ -9,3 +9,5 @@ var characterSchema = mongoose.Schema({
 });
 
 var Character = mongoose.model('Character', characterSchema);
+
+exports.schema = characterSchema;

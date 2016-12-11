@@ -1,0 +1,24 @@
+div.panel.panel-default
+  div.panel-heading
+    h4.modal-title New Encounter
+  div.panel-body  
+    form.form-horizontal(name="addEncounterForm")
+      fieldset
+        .form-group
+          label.col-md-2.control-label(for="title") Title of Encounter
+          .col-md-10
+            input.form-control(name="title", type="text", 
+              placeholder="Title", ng-model="title", required)
+        .form-group
+          label.col-md-2.control-label(for="group") Group
+          .col-md-10
+            input.form-control(name="group", type="text", 
+              placeholder="Group", ng-model="group", required)
+              
+// Add Characters              
+              
+    div
+      .pull-right
+        button.btn.btn-default(ng-click="back()") Cancel
+        button.btn.btn-primary.margin-left-med(ng-click="save()", 
+          ng-disabled="addEncounterForm.$invalid") Submit

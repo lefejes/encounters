@@ -1,7 +1,8 @@
 var auth = require('./auth'),
+    mongoose = require('mongoose'),
     users = require('../controllers/users'),
     characters = require('../controllers/characters'),
-    mongoose = require('mongoose'),
+    encounters = require('../controllers/encounters'),
     User = mongoose.model('User');
 
 module.exports = function(app) {
@@ -15,6 +16,10 @@ module.exports = function(app) {
   app.post('/api/character', characters.createCharacter);
   app.put('/api/character', characters.updateCharacter);
   app.delete('/api/character', characters.deleteCharacter);
+
+  app.get('/api/encounter', encounters.getEncounters);
+  app.get('/api/encounter/:id', encounters.getEncountersById);
+  app.post('/api/encounter', encounters.createEncounter);
 
   app.get('/partials/*', function(req, res) {
     res.render("../../public/app/" + req.params[0]);

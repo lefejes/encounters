@@ -3,3 +3,5 @@ ul.nav.navbar-nav(ng-controller="navbarCtrl")
     a(href="/") Home
   li
     a(href='/character', ng-show="identity.isAuthenticated()") Characters
+  li
+    a(href='/encounter', ng-show="identity.isAuthenticated()") Encounters
