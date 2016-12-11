@@ -23,8 +23,10 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
 
     .when('/character', { templateUrl: '/partials/characters/character-list',
       controller: 'eCharacterListCtrl',  resolve: routeRoleChecks.user})
-    .when('/character/:id', { templateUrl: '/partials/characters/character-details',
-      controller: 'eCharacterDetailCtrl', resolve: routeRoleChecks.user});
+    .when('/character/addNew', { templateUrl: '/partials/characters/add-character',
+      controller:'eAddCharacterCtrl', resolve: routeRoleChecks.user})
+    .when('/character/update/:id', { templateUrl: '/partials/characters/update-character',
+      controller:'eUpdateCharacterCtrl', resolve: routeRoleChecks.user});
 });
 
 angular.module('app').run(function($rootScope, $location) {

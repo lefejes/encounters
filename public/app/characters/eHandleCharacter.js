@@ -1,4 +1,4 @@
-angular.module('app').factory('eHandleCharacter', function($http, $q, eCharacter) {
+angular.module('app').factory('eHandleCharacter', function($http, $q, eCharacter, eIdentity) {
   return {
       createCharacter: function(newCharacterData) {
         var newCharacter = new eCharacter(newCharacterData);
@@ -12,15 +12,37 @@ angular.module('app').factory('eHandleCharacter', function($http, $q, eCharacter
         return dfd.promise;
       },
 
-      deleteCharacter: function(id) {
+      update: function(character) {
         var dfd = $q.defer();
-        var character = new eCharacter(id);
-        character.$delete().then(function() {
+
+        character.$update().then(function() {
+          dfd.resolve();
+        }, function(response) {
+          dfd.reject(response.data.reason);
+        });
+
+        return dfd.promise;
+      },
+
+      delete: function(character) {
+        var dfd = $q.defer();
+        $http({
+          url: '/api/character',
+          method: 'DELETE',
+          data: {
+            character: character,
+            user: eIdentity.currentUser
+          },
+          headers: {
+            "Content-Type": "application/json;charset=utf-8"
+          }
+        }).then(function() {
           dfd.resolve();
         }, function(response) {
           dfd.reject(response.data.reason);
         });
         return dfd.promise;
       }
+
   };
 });

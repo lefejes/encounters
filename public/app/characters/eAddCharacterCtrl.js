@@ -1,7 +1,11 @@
 angular.module('app').controller('eAddCharacterCtrl',
   function($scope, eCharacter, eNotifier, eIdentity, eHandleCharacter, $location) {
+    
+    $scope.charTypes = [{ value: "player", text: "Player"},
+      { value: "npc", text: "NPC"},
+      { value: "enemy", text: "Enemy"}];
 
-    $scope.addNew = function() {
+    $scope.save = function() {
       var newCharacterData = {
         name: $scope.name,
         charType: $scope.charType,
@@ -10,13 +14,15 @@ angular.module('app').controller('eAddCharacterCtrl',
         owner: eIdentity.currentUser._id
       };
 
-
       eHandleCharacter.createCharacter(newCharacterData).then(function() {
         eNotifier.notify('New character created!');
-        $('#addNew').modal('hide');
         $location.path('/character');
       }, function(reason) {
         eNotifier.error(reason);
       });
     };
+
+    $scope.back = function() {
+      $location.path('/character');
+    }
   });

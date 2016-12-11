@@ -1,32 +1,38 @@
 angular.module('app').controller('eUpdateCharacterCtrl',
-  function($scope, eIdentity, eNotifier, eHandleCharacter, $routeParams) {
-    $scope.name = $routeParams.name;
-    $scope.charType = $routeParams.charType;
-    $scope.group = $routeParams.group;
-    $scope.initiativeBonus = $routeParams.initiativeBonus;
+  function($scope, eNotifier, eHandleCharacter, eCharacter, $routeParams, $location) {
 
-    $scope.update = function() {
-      var characterData = {
-        name: $scope.name,
-        charType: $scope.charType,
-        group: $scope.group,
-        initiativeBonus: $scope.initiativeBonus,
-        owner: eIdentity.currentUser._id
-      };
+    $scope.charTypes = [{ value: "player", text: "Player"},
+      { value: "npc", text: "NPC"},
+      { value: "enemy", text: "Enemy"}];
 
-      eHandleCharacter.updateCharacter(characterData).then(function() {
+    eCharacter.query().$promise.then(function(collection) {
+      collection.forEach(function(character) {
+        if (character._id === $routeParams.id) {
+          $scope.character = character;
+        }
+      });
+    });
+
+    $scope.save = function() {
+      eHandleCharacter.update($scope.character).then(function() {
         eNotifier.notify('Your character has been updated');
+        $location.path('/character');
       }, function(reason) {
         eNotifier.error(reason);
       });
     };
 
     $scope.delete = function() {
-      eHandleCharacter.delete({_id: $routeParams._id}).then(function() {
-        eNotifier.notify('Your character has been updated');
+      eHandleCharacter.delete($scope.character).then(function() {
+        eNotifier.notify('Your character has been deleted');
+        $location.path('/character');
       }, function(reason) {
         eNotifier.error(reason);
       });
+    };
+
+    $scope.back = function() {
+      $location.path('/character');
     };
 
   });

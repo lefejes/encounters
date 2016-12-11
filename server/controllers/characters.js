@@ -23,3 +23,34 @@ exports.createCharacter = function(req, res, next) {
     res.send(character);
   });
 };
+
+exports.updateCharacter = function(req, res) {
+  var character = req.body;
+
+  if (req.user._id != character.owner) {
+    res.status(403);
+    return res.end();
+  }
+
+  var query = {'_id': character._id};
+  Character.findOneAndUpdate(query, character, {upsert:true}, function(err, doc){
+    if (err) return res.send(500, { error: err });
+    return res.send("succesfully saved");
+  });
+};
+
+exports.deleteCharacter = function(req, res) {
+
+  var character = req.body.character;
+  var user = req.body.user
+
+  if (user._id != character.owner) {
+    res.status(403);
+    return res.end();
+  }
+
+  Character.findOneAndRemove(character, function(err, doc) {
+    if (err) return res.send(500, { error: err });
+    return res.send("succesfully deleted");
+  });
+};

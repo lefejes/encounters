@@ -13,6 +13,8 @@ module.exports = function(app) {
   app.get('/api/character', characters.getCharacters);
   app.get('/api/character/:id', characters.getCharactersById);
   app.post('/api/character', characters.createCharacter);
+  app.put('/api/character', characters.updateCharacter);
+  app.delete('/api/character', characters.deleteCharacter);
 
   app.get('/partials/*', function(req, res) {
     res.render("../../public/app/" + req.params[0]);

@@ -1,32 +1,33 @@
 div.panel.panel-default
   div.panel-heading
-    h4.modal-title New Character
+    h4.modal-title Update Character
   div.panel-body  
-    form.form-horizontal(name="addCharacterForm")
+    form.form-horizontal(name="updateCharacterForm")
       fieldset
         .form-group
           label.col-md-2.control-label(for="name") Character Name
           .col-md-10
             input.form-control(name="name", type="text", 
-              placeholder="Name", ng-model="name", required)
+              placeholder="Name", ng-model="character.name", required)
         .form-group
           label.col-md-2.control-label(for="charType") Type
           .col-md-10
-            select.form-control(name="charType", ng-model="charType",
+            select.form-control(name="charType", ng-model="character.charType",
               ng-options="item.value as item.text for item in charTypes", 
               required)
         .form-group
           label.col-md-2.control-label(for="group") Group
           .col-md-10
             input.form-control(name="group", type="text", 
-              placeholder="Group", ng-model="group", required)
+              placeholder="Group", ng-model="character.group", required)
         .form-group
           label.col-md-2.control-label(for="initiativeBonus") Initiative Bonus
           .col-md-10
             input.form-control(name="initiativeBonus", type="number", 
-              ng-model="initiativeBonus", required)
+              ng-model="character.initiativeBonus", required)
     div
+      button.btn.btn-danger(ng-click="delete()") Delete
       .pull-right
         button.btn.btn-default(ng-click="back()") Cancel
         button.btn.btn-primary.margin-left-med(ng-click="save()", 
-          ng-disabled="addCharacterForm.$invalid") Submit
+          ng-disabled="addCharacterForm.$invalid") Update
