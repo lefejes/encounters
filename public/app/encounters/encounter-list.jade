@@ -1,5 +1,5 @@
 .container.top-padding-med
-  a.btn.btn-primary(href="/encounters/create") Add Encounter
+  a.btn.btn-primary(href="/encounter/create") Add Encounter
   .pull-right
     form.form-inline
       .form-group
@@ -15,5 +15,5 @@
       tbody
         tr(ng-repeat="encounter in encounters | filter:searchText | orderBy:sortOrder")
           td 
-            a(href="/encounters/update/{{encounter._id}}") {{encounter.title}}
+            a(href="/encounter/update/{{encounter._id}}") {{encounter.title}}
           td {{encounter.group}}

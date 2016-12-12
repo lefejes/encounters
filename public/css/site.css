@@ -27,6 +27,12 @@ footer p {
 .margin-left-med {
   margin-left: 10px;
 }
+.width-auto {
+  width: auto;
+}
+.inline {
+  display: inline-block;
+}
 .toast-top-right {
   top: 70px;
 }

@@ -20,6 +20,8 @@ module.exports = function(app) {
   app.get('/api/encounter', encounters.getEncounters);
   app.get('/api/encounter/:id', encounters.getEncountersById);
   app.post('/api/encounter', encounters.createEncounter);
+  app.put('/api/encounter', encounters.updateEncounter);
+  app.delete('/api/encounter', encounters.deleteEncounter);
 
   app.get('/partials/*', function(req, res) {
     res.render("../../public/app/" + req.params[0]);

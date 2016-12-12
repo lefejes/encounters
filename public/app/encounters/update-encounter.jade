@@ -1,19 +1,19 @@
 div.panel.panel-default
   div.panel-heading
-    h4.modal-title New Encounter
+    h4.modal-title Update Encounter
   div.panel-body  
-    form.form-horizontal(name="addEncounterForm")
+    form.form-horizontal(name="updateEncounterForm")
       fieldset
         .form-group
           label.col-md-2.control-label(for="title") Title of Encounter
           .col-md-10
             input.form-control(name="title", type="text", 
-              placeholder="Title", ng-model="title", required)
+              placeholder="Title", ng-model="encounter.title", required)
         .form-group
           label.col-md-2.control-label(for="group") Group
           .col-md-10
             input.form-control(name="group", type="text", 
-              placeholder="Group", ng-model="group", required)
+              placeholder="Group", ng-model="encounter.group", required)
         .col-md-6
           .pull-right
             input.form-control.width-auto.inline(ng-model="searchText", placeholder="Filter")
@@ -41,7 +41,8 @@ div.panel.panel-default
                 td {{character.name}}
                 td {{character.group}}
     div
+      button.btn.btn-danger(ng-click="delete()") Delete
       .pull-right
         button.btn.btn-default(ng-click="back()") Cancel
         button.btn.btn-primary.margin-left-med(ng-click="save()", 
-          ng-disabled="addEncounterForm.$invalid") Submit
+          ng-disabled="updateEncounterForm.$invalid") Update
