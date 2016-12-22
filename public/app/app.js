@@ -33,7 +33,10 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     .when('/encounter/create', { templateUrl: '/partials/encounters/add-encounter',
       controller:'eAddEncounterCtrl', resolve: routeRoleChecks.user})
     .when('/encounter/update/:id', { templateUrl: '/partials/encounters/update-encounter',
-      controller:'eUpdateEncounterCtrl', resolve: routeRoleChecks.user});
+      controller:'eUpdateEncounterCtrl', resolve: routeRoleChecks.user})
+
+    .when('/in-game', { templateUrl: '/partials/play/play',
+      controller: 'ePlayCtrl', resolve: routeRoleChecks.user});
 });
 
 angular.module('app').run(function($rootScope, $location) {

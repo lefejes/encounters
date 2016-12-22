@@ -5,7 +5,8 @@ var characterSchema = mongoose.Schema({
   charType: {type: String, required: '{PATH} is required!'},
   group: {type: String, required: '{PATH} is required!'},
   initiativeBonus: {type: Number, required: '{PATH} is required!'},
-  owner: {type: String, required: '{PATH} is required!'}
+  owner: {type: String, required: '{PATH} is required!'},
+  initiative: {type: Number}
 });
 
 var Character = mongoose.model('Character', characterSchema);
