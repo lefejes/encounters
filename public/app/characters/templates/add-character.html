@@ -1,0 +1,43 @@
+<div class="modal-header">
+  <h4 class="modal-title">New Character</h4>
+</div>
+<div class="modal-body">
+  <form class="form-horizontal" name="addCharacterForm">
+    <fieldset>
+      <div class="form-group">
+        <div class="input-group col-sm-8 col-sm-offset-2">
+          <div class="input-group-addon addon-80px">Name</div>
+          <input class="form-control", name="name", type="text"
+            ng-model="model.name">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group col-sm-8 col-sm-offset-2">
+          <div class="input-group-addon addon-80px">Type</div>
+          <select class="form-control col-sm-10", name="charType", ng-model="model.charType",
+            ng-options="item.value as item.text for item in model.charTypes", required></select>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group col-sm-8 col-sm-offset-2">
+          <div class="input-group-addon addon-80px">Group</div>
+          <input class="form-control col-sm-10", name="group", type="text"
+            ng-model="model.group", placeholder="Adventuring Party, Gaming group, etc...",
+            required>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group col-sm-4 col-sm-offset-4">
+          <div class="input-group-addon">Initiative Bonus</div>
+          <input class="form-control", name="initiativeBonus", type="number"
+            ng-model="model.initiativeBonus", required>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-default", ng-click="model.cancel()">Cancel</button>
+  <button class="btn btn-primary pull-right", ng-click="$close(model)",
+    ng-disabled="addCharacterForm.$invalid">Submit</button>
+</div>

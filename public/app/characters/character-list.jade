@@ -1,5 +1,5 @@
 .container.top-padding-med
-  a.btn.btn-primary(href="/character/addNew") Add Character
+  a.btn.btn-primary(ng-click="createCharacter()") Add Character
   .pull-right
     form.form-inline
       .form-group
@@ -17,7 +17,7 @@
       tbody
         tr(ng-repeat="character in characters | filter:searchText | orderBy:sortOrder")
           td 
-            a(href="/character/update/{{character._id}}") {{character.name}}
+            button.btn-link(ng-click="updateCharacter(character)") {{character.name}}
           td {{character.initiativeBonus}}
           td {{character.charType}}
           td {{character.group}}

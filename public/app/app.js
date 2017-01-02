@@ -1,4 +1,4 @@
-angular.module('app', ['ngResource', 'ngRoute', 'ngMaterial', 'ui.bootstrap']);
+angular.module('app', ['ngResource', 'ngRoute', 'ui.bootstrap']);
 
 angular.module('app').config(function($routeProvider, $locationProvider) {
   var routeRoleChecks = {
@@ -23,10 +23,6 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
 
     .when('/character', { templateUrl: '/partials/characters/character-list',
       controller: 'eCharacterListCtrl',  resolve: routeRoleChecks.user})
-    .when('/character/addNew', { templateUrl: '/partials/characters/add-character',
-      controller:'eAddCharacterCtrl', resolve: routeRoleChecks.user})
-    .when('/character/update/:id', { templateUrl: '/partials/characters/update-character',
-      controller:'eUpdateCharacterCtrl', resolve: routeRoleChecks.user})
 
     .when('/encounter', { templateUrl: '/partials/encounters/encounter-list',
       controller: 'eEncounterListCtrl', resolve: routeRoleChecks.user})

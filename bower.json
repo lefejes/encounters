@@ -3,6 +3,7 @@
   "description": "d20 Encounter Tracker",
   "main": "index.js",
   "authors": [
+    "Lara Johnston",
     "Dayne Johnston"
   ],
   "license": "ISC",
