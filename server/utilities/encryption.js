@@ -5,7 +5,7 @@ exports.createSalt = function() {
 };
 
 exports.hashPwd = function(salt, pwd) {
-  var hmac = crypto.createHmac('sha1', salt);
+  var hmac = crypto.createHmac('sha256', salt);
   hmac.setEncoding('hex');
   hmac.write(pwd);
   hmac.end();
